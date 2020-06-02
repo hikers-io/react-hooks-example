@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+# project specific
+trash/
+
+# typescript stuff
+./src/**/*.js
+./src/**/*.jsx
