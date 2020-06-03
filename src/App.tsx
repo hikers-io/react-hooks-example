@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import home from './components/home/home';
 import converter from './components/converter/converter';
+import wallet from './components/wallet/wallet';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/converter" component={converter} />
+          <Route path="/wallet" component={wallet} />
           <Route path="/" component={home} />
         </Switch>
       </div>

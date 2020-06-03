@@ -1,6 +1,6 @@
 .converter {
   --HEAD_SIZE: 6%;
-  --MENU_SIZE: 5.5%;
+  --MENU_SIZE: 20%;
 
   min-height: 100%;
   height: 100%;
@@ -15,13 +15,8 @@
   grid-area: head;
 }
 
-.side {
-  grid-area: side;
-}
-
-.content {
-  grid-area: content;
-  width: auto;
+.siteNavigation {
+  grid-area: siteNavigation;
 }
 
 .gridLayout {
@@ -29,7 +24,7 @@
   grid-template-columns: var(--MENU_SIZE) calc(100% - var(--MENU_SIZE));
   grid-template-areas:
     "head head"
-    "side content";
+    "siteNavigation content";
 }
 
 .topheader {
@@ -42,90 +37,127 @@
   align-items: center;
 }
 
-.sideMenu {
-  margin: 0;
-  padding: 0;
-
-  box-sizing: border-box;
-  border-left: 3px white solid;
-  border-right: 3px white solid;
-  width: 80px;
-}
-
-.sideMenu .sideMenuOpt {
-  margin: 0;
-  padding: 10px 0;
-  border-bottom: 3px white solid;
-}
-
-.sideMenu .sideMenuOpt:hover {
-  background-color: black;
-  color: white;
-}
-
-@-webkit-keyframes slide-left {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(-100px);
-    transform: translateX(-100px);
-  }
-}
-@keyframes slide-left {
-  0% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-  }
-  100% {
-    -webkit-transform: translateX(-100px);
-    transform: translateX(-100px);
-  }
-}
-
-.sideMenu .sideMenuOpt .slideLeft:hover {
-	-webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-
-.sideMenu .sideMenuOpt .fromCur {
-  background-color: #c3ffc3;
-}
-
-.sideMenu .sideMenuOpt .toCur {
-  background-color: #ff9393;
-}
-
-/* Hide Dropdowns by Default */
-nav ul ul {
-  border: 3px white solid;
-	display: none;
-  position: absolute;
-  top: 90px;
-  left: 80px;
-  list-style-type: none;
-  padding: 0;
-}
-
-/* Display Dropdowns on Hover */
-nav ul li:hover > ul {
+.siteNavigation {
   display: block;
-  list-style-type: none;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+  margin: 20px;
+  background: #3498DB;
 }
 
-/* Fisrt Tier Dropdown */
-nav ul ul li {
-  width: auto;
-  float: none;
-  display: list-item;
-  position: relative;
-  list-style-type: none;
+.siteNavigation ul {
+  display: flex;
+  flex-direction: column;
+  background: #3498DB;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
 }
 
-.stage {
-  background-color: #b1b1b1;
-  border: 10px solid white;
-  width: 100px;
-  height: 100px;
+.siteNavigation li {
+	color: #fff;
+  background: #3498DB;
+	display: block;
+	float: left;
+	margin: 0 2px 0 0;
+	padding: 12px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.siteNavigation li span {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.siteNavigation li:hover {
+	@include transition(background, 0.2s);
+	background: #52a6df;
+	cursor: pointer;
+}
+
+.siteNavigation ul li ul {
+	background: #52a6df;
+	visibility: hidden;
+	float: left;
+  min-width: 50px;
+	position: absolute;
+  transition: visibility 0.65s ease-in;
+  margin: -31px 0 0 146px;
+	left: 0;
+	z-index: 999;
+}
+
+.siteNavigation ul li:hover > ul,
+.siteNavigation ul li ul:hover {
+   visibility: visible;
+}
+
+.siteNavigation ul li ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+	clear: both;
+  width: 100%;
+}
+
+.siteNavigation ul li ul li:hover {
+	background: #74b7e4;
+}
+
+.content {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.moneyBox {
+  display: block;
+  border: 1px solid white;
+  margin: 20px;
+  width: 300px;
+  max-height: 100px;
+}
+
+.moneyBoxTitle {
+  display: block;
+  font-size: 18px;
+  font-weight: bolder;
+  margin: 10px 0 15px 0;
+}
+
+.money {
+  display: block;
+  margin: 5px;
+}
+
+.converterBox {
+  margin: 40px 0;
+  display: block;
+  border: 1px solid white;
+  width: 400px;
+}
+
+.converterBoxField {
+  display: block;
+  margin-top: 10px;
+}
+
+.buyBtn {
+  margin: 10px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
