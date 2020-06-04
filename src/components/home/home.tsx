@@ -1,7 +1,8 @@
 import React from 'react';
 import './home.css';
-import logo from '../../assets/logo_hikers_960x360.png';
 import { Link } from 'react-router-dom';
+
+const logo = require('../../assets/logo_hikers_960x360.png');
 
 function home() {
   return (

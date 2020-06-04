@@ -1,48 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './converter.css';
-import ConverterPresenter from './converter-presenter';
 import { Link } from 'react-router-dom';
+import ConverterPresenter from './converter-presenter';
 
 
-function Converter() {
-  let presenter = new ConverterPresenter();
+let presenter: ConverterPresenter;
 
-  return (
-    <div className="converter">
-      <div className="gridTemplate gridLayout">
-        <div className="head" >
-          <div className="topheader">Client Converter</div>
-        </div>
-
-        <nav className="siteNavigation">
-          <ul>
-            <li><Link to="/wallet">Wallet</Link></li>
-            <li><span>From</span>
-              {listCur("dropdown_fromCur")}
-            </li>
-            <li><span>To</span>
-              {listCur("dropdown_fromCur")}
-            </li>
-          </ul>
-        </nav>
-
-        <div className="content">
-          <div className="moneyBox">
-            <span className="moneyBoxTitle">Wallet</span>
-            <span className="money">{presenter.coin1} {presenter.value1}</span>
-            <span className="money">{presenter.coin2} {presenter.value2}</span>
-          </div>
-
-          <div className="converterBox">
-            <span className="converterBoxField">BRL <input type="number" step="0.01" /></span>
-            <span className="converterBoxField">USD <input type="number" step="0.01" /></span>
-            <button className="buyBtn">Buy</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function listCur(classToName: string) {
   return (
@@ -55,7 +18,72 @@ function listCur(classToName: string) {
       <li><span className="spanLink">EUR</span></li>
       <li><span className="spanLink">GBP</span></li>
     </ul>
-  )
+  );
 }
+
+function Converter() {
+
+  if (!presenter) {
+    presenter = new ConverterPresenter();
+  }
+
+  return (
+    <div className="converter">
+      <div className="gridTemplate gridLayout">
+        <div className="head">
+          <div className="topheader">Client Converter</div>
+        </div>
+
+        <nav className="siteNavigation">
+          <ul>
+            <li><Link to="/wallet">Wallet</Link></li>
+            <li>
+              <span>From</span>
+              {listCur('dropdown_fromCur')}
+            </li>
+            <li>
+              <span>To</span>
+              {listCur('dropdown_fromCur')}
+            </li>
+          </ul>
+        </nav>
+
+        <div className="content">
+          <div className="moneyBox">
+            <span className="moneyBoxTitle">Wallet</span>
+            <span className="money">
+              {presenter.upCur}
+              {' '}
+              56,12
+              {/* {presenter.value1} */}
+            </span>
+            <span className="money">
+              {presenter.downCur}
+              {' '}
+              12,12
+              {/* {presenter.value2} */}
+            </span>
+          </div>
+
+          <div className="converterBox">
+            <span className="converterBoxField">
+              BRL
+              <input type="number" step="0.01" />
+            </span>
+            <span className="converterBoxField">
+              USD
+              <input type="number" step="0.01" />
+            </span>
+            <button type="button" className="buyBtn">Buy</button>
+          </div>
+        </div>
+        <div>
+          {/* {presenter.curApi} */}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 export default Converter;

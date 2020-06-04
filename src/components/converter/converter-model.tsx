@@ -1,12 +1,10 @@
 class ConverteModel {
-  from: string
-  to: string
-  value: number
+  public date: string;
+  public rates: {string?: number};
 
-  constructor(from: string, to: string, value: number) {
-    this.from = from;
-    this.to = to;
-    this.value = value;
+  constructor(date: string='', rates: {string?: number}={}) {
+    this.date = date;
+    this.rates = rates;
   }
 }
 
