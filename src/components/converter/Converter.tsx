@@ -1,28 +1,89 @@
 import React from 'react';
 import './converter.css';
+import ConverterPresenter from './ConverterPresenter';
 import { Link } from 'react-router-dom';
-import ConverterPresenter from './converter-presenter';
-
 
 let presenter: ConverterPresenter;
 
 
-function listCur(classToName: string) {
+function listCur(classToName: string, up: boolean) {
   return (
     <ul className={`${classToName}`}>
-      <li><span className="spanLink">BRL</span></li>
-      <li><span className="spanLink">USD</span></li>
-      <li><span className="spanLink">JPY</span></li>
-      <li><span className="spanLink">RUB</span></li>
-      <li><span className="spanLink">NZD</span></li>
-      <li><span className="spanLink">EUR</span></li>
-      <li><span className="spanLink">GBP</span></li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'BRL' : presenter.downCur = 'BRL')
+          }
+          className="spanLink"
+        >
+          BRL
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'USD' : presenter.downCur = 'USD')
+          }
+          className="spanLink"
+        >
+          USD
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'JPY' : presenter.downCur = 'JPY')
+          }
+          className="spanLink"
+        >
+          JPY
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'RUB' : presenter.downCur = 'RUB')
+          }
+          className="spanLink"
+        >
+          RUB
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'NZD' : presenter.downCur = 'NZD')
+          }
+          className="spanLink"
+        >
+          NZD
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'EUR' : presenter.downCur = 'EUR')
+          }
+          className="spanLink"
+        >
+          EUR
+        </span>
+      </li>
+      <li>
+        <span
+          onClick={
+            () => (up ? presenter.upCur = 'GBP' : presenter.downCur = 'GBP')
+          }
+          className="spanLink"
+        >
+          GBP
+        </span>
+      </li>
     </ul>
   );
 }
 
 function Converter() {
-
   if (!presenter) {
     presenter = new ConverterPresenter();
   }
@@ -39,11 +100,11 @@ function Converter() {
             <li><Link to="/wallet">Wallet</Link></li>
             <li>
               <span>From</span>
-              {listCur('dropdown_fromCur')}
+              {listCur('dropdown_fromCur', true)}
             </li>
             <li>
               <span>To</span>
-              {listCur('dropdown_fromCur')}
+              {listCur('dropdown_fromCur', false)}
             </li>
           </ul>
         </nav>

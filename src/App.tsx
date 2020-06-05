@@ -5,12 +5,14 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import home from './components/home/home';
-import converter from './components/converter/converter';
-import wallet from './components/wallet/wallet';
+import home from './components/home/Home';
+import converter from './components/converter/Converter';
+import wallet from './components/wallet/Wallet';
+import ExhangeProvider from './providers/ExchangeProvider';
 
-function App() {
-  return (
+
+const App = () => (
+  <ExhangeProvider>
     <Router>
       <div className="App">
         <Switch>
@@ -20,7 +22,8 @@ function App() {
         </Switch>
       </div>
     </Router>
-  );
-}
+  </ExhangeProvider>
+);
+
 
 export default App;
