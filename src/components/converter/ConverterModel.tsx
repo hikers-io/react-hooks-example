@@ -1,7 +1,7 @@
 class ConverteModel {
   public date: string;
 
-  public rates: {string?: number};
+  public rates: any;
 
   constructor(date: string = '', rates: {string?: number} = {}) {
     this.date = date;

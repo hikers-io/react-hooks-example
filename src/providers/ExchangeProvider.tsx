@@ -5,7 +5,6 @@ import exchangeReducer, { initialState } from '../reducers/exchangeReducer';
 const ExchangeContext = React.createContext({});
 
 
-// eslint-disable-next-line
 function ExhangeProvider({children}: any) {
   const [state, dispatch] = React.useReducer(exchangeReducer, initialState);
 

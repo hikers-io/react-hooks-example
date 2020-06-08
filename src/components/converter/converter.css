@@ -147,6 +147,10 @@
   margin-top: 10px;
 }
 
+.converterBoxField input {
+  margin-left: 10px;
+}
+
 .buyBtn {
   margin: 10px;
 }

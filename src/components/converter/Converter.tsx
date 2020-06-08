@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './converter.css';
-import ConverterPresenter from './ConverterPresenter';
 import { Link } from 'react-router-dom';
+import ConverterPresenter from './ConverterPresenter';
 
 let presenter: ConverterPresenter;
 
@@ -10,83 +10,99 @@ function listCur(classToName: string, up: boolean) {
   return (
     <ul className={`${classToName}`}>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'BRL' : presenter.downCur = 'BRL')
+            () => { 'BRL' }
           }
           className="spanLink"
         >
           BRL
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'USD' : presenter.downCur = 'USD')
+            () => { 'USD' }
           }
           className="spanLink"
         >
           USD
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'JPY' : presenter.downCur = 'JPY')
+            () => { 'JPY' }
           }
           className="spanLink"
         >
           JPY
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'RUB' : presenter.downCur = 'RUB')
+            () => { 'RUB' }
           }
           className="spanLink"
         >
           RUB
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'NZD' : presenter.downCur = 'NZD')
+            () => { 'NZD' }
           }
           className="spanLink"
         >
           NZD
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'EUR' : presenter.downCur = 'EUR')
+            () => { 'EUR' }
           }
           className="spanLink"
         >
           EUR
-        </span>
+        </button>
       </li>
       <li>
-        <span
+        <button
+          type="button"
           onClick={
-            () => (up ? presenter.upCur = 'GBP' : presenter.downCur = 'GBP')
+            () => { 'GBP' }
           }
           className="spanLink"
         >
           GBP
-        </span>
+        </button>
       </li>
     </ul>
   );
 }
 
 function Converter() {
+  // set presenter if needed
   if (!presenter) {
     presenter = new ConverterPresenter();
   }
+
+  // set useState variables
+  const [curUp, setcurUp] = useState('BRL');
+  const [curDown, setcurDown] = useState('USD');
+  const [walCurUp] = useState(101.21);
+  const [walCurDown] = useState(110.34);
+  const [convertCurUp, setConvertCurUp] = useState(10);
+  const [convertCurDown, setConvertCurDown] = useState(0);
 
   return (
     <div className="converter">
@@ -113,27 +129,25 @@ function Converter() {
           <div className="moneyBox">
             <span className="moneyBoxTitle">Wallet</span>
             <span className="money">
-              {presenter.upCur}
+              {curUp}
               {' '}
-              56,12
-              {/* {presenter.value1} */}
+              {walCurDown}
             </span>
             <span className="money">
-              {presenter.downCur}
+              {curDown}
               {' '}
-              12,12
-              {/* {presenter.value2} */}
+              {walCurUp}
             </span>
           </div>
 
           <div className="converterBox">
             <span className="converterBoxField">
-              BRL
-              <input type="number" step="0.01" />
+              {curUp}
+              <input type="number" step="0.01" value={convertCurUp} onChange={() => presenter.convert(curUp, curDown, convertCurUp, setConvertCurDown)} />
             </span>
             <span className="converterBoxField">
-              USD
-              <input type="number" step="0.01" />
+              {curDown}
+              <input type="number" step="0.01" value={convertCurDown} onChange={() => presenter.convert(curDown, curUp, convertCurDown, setConvertCurUp)} />
             </span>
             <button type="button" className="buyBtn">Buy</button>
           </div>
